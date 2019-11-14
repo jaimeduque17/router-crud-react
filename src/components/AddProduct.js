@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Error from './Error';
 
+import axios from 'axios';
+
 function AddProduct() {
 
     // state
@@ -13,7 +15,7 @@ function AddProduct() {
         saveCategory(e.target.value);
     }
 
-    const addProduct = e => {
+    const addProduct = async e => {
         e.preventDefault();
 
         if (saucerName === '' || saucerPrice === '' || category === '') {
@@ -24,6 +26,17 @@ function AddProduct() {
         saveError(false);
 
         // create a new product
+        try {
+            const result = await axios.post('http://localhost:4000/restaurant', {
+                saucerName,
+                saucerPrice,
+                category
+            });
+
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 

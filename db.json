@@ -1,16 +1,22 @@
 {
-    "restaurant": [
-        {
-            "saucerPrice": "200",
-            "saucerName": "Cheesecake",
-            "category": "desserts",
-            "id": 1
-        },
-        {
-            "saucerPrice": "300",
-            "saucerName": "Rib Eye 300g",
-            "category": "cuts",
-            "id": 2
-        }
-    ]
+  "restaurant": [
+    {
+      "saucerPrice": "200",
+      "saucerName": "Cheesecake",
+      "category": "desserts",
+      "id": 1
+    },
+    {
+      "saucerPrice": "300",
+      "saucerName": "Rib Eye 300g",
+      "category": "cuts",
+      "id": 2
+    },
+    {
+      "saucerName": "spring salad",
+      "saucerPrice": "100",
+      "category": "salad",
+      "id": 3
+    }
+  ]
 }
