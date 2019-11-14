@@ -5,7 +5,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withRouter } from 'react-router-dom';
 
-function AddProduct({ history }) {
+function AddProduct({ history, saveReloadProducts }) {
 
     // state
     const [saucerName, saveName] = useState('');
@@ -52,6 +52,7 @@ function AddProduct({ history }) {
         }
 
         // redirect the user to products
+        saveReloadProducts(true);
         history.push('/products');
 
     }

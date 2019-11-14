@@ -11,17 +11,23 @@ import Product from './components/Product';
 function App() {
 
 	const [products, saveProducts] = useState([]);
+	const [reloadProducts, saveReloadProducts] = useState(true);
 
 	useEffect(() => {
-		const consultAPI = async () => {
+		if (reloadProducts) {
+			const consultAPI = async () => {
 
-			// consult json-server API
-			const result = await axios.get('http://localhost:4000/restaurant');
+				// consult json-server API
+				const result = await axios.get('http://localhost:4000/restaurant');
 
-			saveProducts(result.data);
+				saveProducts(result.data);
+			}
+			consultAPI();
+
+			// change to false the products reload
+			saveReloadProducts(false);
 		}
-		consultAPI();
-	}, []);
+	}, [reloadProducts]);
 
 	return (
 		<Router>
@@ -34,7 +40,11 @@ function App() {
 								products={products}
 							/>
 						)} />
-					<Route exact path="/new-product" component={AddProduct} />
+					<Route exact path="/new-product" render={() => (
+						<AddProduct
+							saveReloadProducts={saveReloadProducts}
+						/>
+					)} />
 					<Route exact path="/products/:id" component={Product} />
 					<Route exact path="/products/edit/:id" component={EditProduct} />
 				</Switch>
