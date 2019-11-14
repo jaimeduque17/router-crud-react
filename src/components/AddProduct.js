@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Error from './Error';
 
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { withRouter } from 'react-router-dom';
 
-function AddProduct() {
+function AddProduct({ history }) {
 
     // state
     const [saucerName, saveName] = useState('');
@@ -33,10 +35,24 @@ function AddProduct() {
                 category
             });
 
-            console.log(result);
+            if (result.status === 201) {
+                Swal.fire(
+                    'Product Created',
+                    'The product was created correctly',
+                    'success'
+                )
+            }
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                type: 'error',
+                title: 'Error',
+                text: 'Something went wrong'
+            })
         }
+
+        // redirect the user to products
+        history.push('/products');
 
     }
 
@@ -125,4 +141,4 @@ function AddProduct() {
     )
 }
 
-export default AddProduct;
+export default withRouter(AddProduct);

@@ -17,6 +17,18 @@
       "saucerPrice": "100",
       "category": "salad",
       "id": 3
+    },
+    {
+      "saucerName": "coke",
+      "saucerPrice": "10",
+      "category": "drink",
+      "id": 4
+    },
+    {
+      "saucerName": "carrot cake",
+      "saucerPrice": "30",
+      "category": "dessert",
+      "id": 5
     }
   ]
 }
