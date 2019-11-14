@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Error from './Error';
 
 function AddProduct() {
 
@@ -6,16 +7,33 @@ function AddProduct() {
     const [saucerName, saveName] = useState('');
     const [saucerPrice, savePrice] = useState('');
     const [category, saveCategory] = useState('');
+    const [error, saveError] = useState(false);
 
     const readRadioValue = e => {
         saveCategory(e.target.value);
     }
 
+    const addProduct = e => {
+        e.preventDefault();
+
+        if (saucerName === '' || saucerPrice === '' || category === '') {
+            saveError(true);
+            return;
+        }
+
+        saveError(false);
+
+        // create a new product
+
+    }
+
     return (
         <div className="col-md-8 mx-auto">
             <h1 className="text-center">Add New Product</h1>
+            {(error) ? <Error message='All fields are required' /> : null}
             <form
                 className="mt-5"
+                onSubmit={addProduct}
             >
                 <div className="form-group">
                     <label>Saucer Name</label>
