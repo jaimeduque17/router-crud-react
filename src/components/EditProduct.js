@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Error from './Error';
 
-function EditProduct() {
+function EditProduct({ product }) {
+
+    // generate refs
+    const saucerPriceRef = useRef('');
+    const saucerNameRef = useRef('');
 
     // state
     const [error, saveError] = useState(false);
@@ -30,6 +34,8 @@ function EditProduct() {
                         className="form-control"
                         name="name"
                         placeholder="Saucer Name"
+                        ref={saucerNameRef}
+                        defaultValue={product.saucerName}
                     />
                 </div>
                 <div className="form-group">
@@ -39,6 +45,8 @@ function EditProduct() {
                         className="form-control"
                         name="price"
                         placeholder="Saucer Price"
+                        ref={saucerPriceRef}
+                        defaultValue={product.saucerPrice}
                     />
                 </div>
                 <legend className="text-center">Category:</legend>
@@ -50,6 +58,7 @@ function EditProduct() {
                             name="category"
                             value="dessert"
                             onChange={readRadioValue}
+                            defaultChecked={(product.category === 'dessert')}
                         />
                         <label className="form-check-label">
                             Dessert
@@ -62,6 +71,7 @@ function EditProduct() {
                             name="category"
                             value="drink"
                             onChange={readRadioValue}
+                            defaultChecked={(product.category === 'drink')}
                         />
                         <label className="form-check-label">
                             Drink
@@ -74,6 +84,7 @@ function EditProduct() {
                             name="category"
                             value="cuts"
                             onChange={readRadioValue}
+                            defaultChecked={(product.category === 'cuts')}
                         />
                         <label className="form-check-label">
                             Cuts
@@ -86,6 +97,7 @@ function EditProduct() {
                             name="category"
                             value="salad"
                             onChange={readRadioValue}
+                            defaultChecked={(product.category === 'salad')}
                         />
                         <label className="form-check-label">
                             Salad
