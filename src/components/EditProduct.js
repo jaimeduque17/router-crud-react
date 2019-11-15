@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 function EditProduct(props) {
 
     // props destructuring
-    const {history, product, saveReloadProducts} = props;
+    const { history, product, saveReloadProducts } = props;
 
     // generate refs with Hooks
     const saucerPriceRef = useRef('');
@@ -20,13 +20,24 @@ function EditProduct(props) {
     const editProduct = async e => {
         e.preventDefault();
 
-        // check if the category changed, otherwise assign the same value
+        // validation
+        const newSaucerName = saucerPriceRef.current.value,
+            newSaucerPrice = saucerNameRef.current.value;
+
+        if (newSaucerName === '' || newSaucerPrice === '' || category === '') {
+            saveError(true);
+            return;
+        }
+
+            saveError(false);
+
+            // check if the category changed, otherwise assign the same value
         let saucerCategory = (category === '') ? product.category : category;
 
         // get de form values
         const editSaucer = {
-            saucerPrice: saucerPriceRef.current.value,
-            saucerName: saucerNameRef.current.value,
+            saucerPrice: newSaucerPrice,
+            saucerName: newSaucerName,
             category: saucerCategory
         }
 
