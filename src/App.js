@@ -56,6 +56,7 @@ function App() {
 						return (
 							<EditProduct 
 							product={product[0]}
+							saveReloadProducts={saveReloadProducts}
 							/>
 						)
 					}} />

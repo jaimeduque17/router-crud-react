@@ -1,9 +1,15 @@
 import React, { useState, useRef } from 'react';
 import Error from './Error';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { withRouter } from 'react-router-dom';
 
-function EditProduct({ product }) {
+function EditProduct(props) {
 
-    // generate refs
+    // props destructuring
+    const {history, product, saveReloadProducts} = props;
+
+    // generate refs with Hooks
     const saucerPriceRef = useRef('');
     const saucerNameRef = useRef('');
 
@@ -11,8 +17,43 @@ function EditProduct({ product }) {
     const [error, saveError] = useState(false);
     const [category, saveCategory] = useState('');
 
-    const editProduct = e => {
+    const editProduct = async e => {
+        e.preventDefault();
 
+        // check if the category changed, otherwise assign the same value
+        let saucerCategory = (category === '') ? product.category : category;
+
+        // get de form values
+        const editSaucer = {
+            saucerPrice: saucerPriceRef.current.value,
+            saucerName: saucerNameRef.current.value,
+            category: saucerCategory
+        }
+
+        // send the Request
+        const url = `http://localhost:4000/restaurant/${product.id}`;
+
+        try {
+            const result = await axios.put(url, editSaucer);
+            if (result.status === 200) {
+                Swal.fire(
+                    'Product Edit',
+                    'The product was edited correctly',
+                    'success'
+                )
+            }
+        } catch (error) {
+            console.log(error);
+            Swal.fire({
+                type: 'error',
+                title: 'Error',
+                text: 'Something went wrong'
+            })
+        }
+
+        // redirect the user, consult API
+        saveReloadProducts(true);
+        history.push('/products');
     }
 
     const readRadioValue = e => {
@@ -110,4 +151,4 @@ function EditProduct({ product }) {
     )
 }
 
-export default EditProduct;
+export default withRouter(EditProduct);
