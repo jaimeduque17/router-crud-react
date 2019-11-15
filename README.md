@@ -12,7 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `json-server db.json -p 4000`
+### `json-server db.json -p 4000` for the Back
 Open [http://localhost:4000/restaurant](http://localhost:4000/restaurant) to view it in the browser.
 
 ### `yarn test`
