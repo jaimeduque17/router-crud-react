@@ -38,6 +38,7 @@ function App() {
 						render={() => (
 							<Products
 								products={products}
+								saveReloadProducts={saveReloadProducts}
 							/>
 						)} />
 					<Route exact path="/new-product" render={() => (

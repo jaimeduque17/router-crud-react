@@ -62,7 +62,7 @@ function EditProduct(props) {
             })
         }
 
-        // redirect the user, consult API
+        // redirect the user, API consult
         saveReloadProducts(true);
         history.push('/products');
     }

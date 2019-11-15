@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import ListProduct from './ListProduct';
 
-function Products({ products }) {
+function Products({ products, saveReloadProducts }) {
     return (
         <Fragment>
             <h1 className="text-center">Products</h1>
@@ -10,6 +10,7 @@ function Products({ products }) {
                     <ListProduct
                         key={product.id}
                         product={product}
+                        saveReloadProducts={saveReloadProducts}
                     />
                 ))}
             </ul>
